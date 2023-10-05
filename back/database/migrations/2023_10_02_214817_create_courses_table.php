@@ -3,6 +3,7 @@
 use App\Models\AnneeScolaire;
 use App\Models\Classe;
 use App\Models\Course;
+use App\Models\Enseignant;
 use App\Models\Module;
 use App\Models\Professeur;
 use App\Models\Semestre;
@@ -19,15 +20,13 @@ return new class extends Migration
     {
         Schema::create('courses', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(Classe::class);
-            $table->foreignIdFor(AnneeScolaire::class);
-            $table->foreignIdFor(Professeur::class);
-            $table->foreignIdFor(Semestre::class);
-            $table->foreignIdFor(Module::class);
-            $table->integer("heure_global");
-            $table->unique(["classe_id","annee_scolaire_id"]);
-            $table->unique([            "professeur_id","semestre_id","module_id"
-            ])
+            $table->foreignIdFor(Classe::class)->constrained();
+            $table->foreignIdFor(AnneeScolaire::class)->constrained();
+            $table->foreignIdFor(Enseignant::class)->constrained();
+            $table->foreignIdFor(Semestre::class)->constrained();
+            $table->foreignIdFor(Module::class)->constrained();
+            $table->integer("heure_global")->constrained();
+            $table->unique(["classe_id","annee_scolaire_id","enseignant_id","semestre_id","module_id"],'courses_unique_index');
             ;
             $table->timestamps();
         });

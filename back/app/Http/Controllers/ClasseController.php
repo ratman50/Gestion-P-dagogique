@@ -13,6 +13,9 @@ class ClasseController extends Controller
      */
     public function index()
     {
+        return response([
+            "data"=>Classe::all()
+        ]);
         //
     }
 

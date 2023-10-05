@@ -13,7 +13,9 @@ class ModuleController extends Controller
      */
     public function index()
     {
-        //
+        return response([
+            "data"=>Module::all()
+        ]);
     }
 
     /**

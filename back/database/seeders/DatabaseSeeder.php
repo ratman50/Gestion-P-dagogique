@@ -27,7 +27,8 @@ class DatabaseSeeder extends Seeder
             AnneeScolaireSeeder::class,
             ModuleSeeder::class,
             EnseignantSeeder::class,
-            SemestreSeeder::class
+            SemestreSeeder::class,
+            SalleSeeder::class
         ]);
     }
 }

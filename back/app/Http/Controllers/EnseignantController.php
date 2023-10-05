@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreEnseignantRequest;
 use App\Http\Requests\UpdateEnseignantRequest;
+use App\Http\Resources\EnseignantResource;
 use App\Models\Enseignant;
 
 class EnseignantController extends Controller
@@ -13,7 +14,7 @@ class EnseignantController extends Controller
      */
     public function index()
     {
-        //
+        return EnseignantResource::collection(Enseignant::all());
     }
 
     /**

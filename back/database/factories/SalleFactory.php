@@ -17,7 +17,7 @@ class SalleFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            "libelle"=>fake()->word()
         ];
     }
 }

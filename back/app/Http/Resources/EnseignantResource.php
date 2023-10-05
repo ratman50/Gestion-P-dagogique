@@ -15,7 +15,8 @@ class EnseignantResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
-            "nom"=>$this->prenom.' '.$this->nom
+            "nom"=>$this->prenom.' '.$this->nom,
+            "id"=>$this->id
         ];
     }
 }

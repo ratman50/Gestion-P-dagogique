@@ -14,6 +14,7 @@ class SalleController extends Controller
     public function index()
     {
         //
+        return response(["data"=>Salle::all()]);
     }
 
     /**
