@@ -22,13 +22,17 @@ class DatabaseSeeder extends Seeder
         //     'email' => 'test@example.com',
         // ]);
         $this->call([
+            RoleSeeder::class,
             NiveauSeeder::class,
             ClasseSeeder::class,
+            SemestreSeeder::class,
             AnneeScolaireSeeder::class,
             ModuleSeeder::class,
-            EnseignantSeeder::class,
-            SemestreSeeder::class,
-            SalleSeeder::class
+            SalleSeeder::class,
+            UserSeeder::class,
+            ModuleEnseignesSeesder::class,
+            ParamSeeder::class,
+            CourseSeeder::class
         ]);
     }
 }

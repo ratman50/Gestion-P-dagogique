@@ -15,10 +15,10 @@ class ClasseSeeder extends Seeder
     public function run(): void
     {
         $data=[
-            ["libelle"=>"ST1","niveau_id"=>Niveau::inRandomOrder()->first()->id,"filiere"=>"DEV WEB/MOBILE"],
-            ["libelle"=>"SRT1","niveau_id"=>Niveau::inRandomOrder()->first()->id,"filiere"=>"AWS"],
-            ["libelle"=>"SR0T1","niveau_id"=>Niveau::inRandomOrder()->first()->id,"filiere"=>"ANALYSE DE DONNEES"],
-            ["libelle"=>"SR0Tw1","niveau_id"=>Niveau::inRandomOrder()->first()->id,"filiere"=>"REFERENT DIGITAL"],
+            ["effectif"=>20,"libelle"=>"ST1","niveau_id"=>Niveau::inRandomOrder()->first()->id,"filiere"=>"DEV WEB/MOBILE"],
+            ["effectif"=>30,"libelle"=>"SRT1","niveau_id"=>Niveau::inRandomOrder()->first()->id,"filiere"=>"AWS"],
+            ["effectif"=>35,"libelle"=>"SR0T1","niveau_id"=>Niveau::inRandomOrder()->first()->id,"filiere"=>"ANALYSE DE DONNEES"],
+            ["effectif"=>50,"libelle"=>"SR0Tw1","niveau_id"=>Niveau::inRandomOrder()->first()->id,"filiere"=>"REFERENT DIGITAL"],
 
         ];
         Classe::insert($data);

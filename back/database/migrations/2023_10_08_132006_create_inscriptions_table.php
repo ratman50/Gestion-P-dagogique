@@ -1,5 +1,7 @@
 <?php
 
+use App\Models\Param;
+use App\Models\User;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -11,13 +13,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('enseignants', function (Blueprint $table) {
+        Schema::create('inscriptions', function (Blueprint $table) {
             $table->id();
-            $table->string("nom");
-            $table->string("prenom");
-            $table->string("specialite");
-            $table->string("grade");
-
+            $table->foreignIdFor(User::class)->constrained();
+            $table->date("date_insciption");
+            $table->foreignIdFor(Param::class)->constrained();
             $table->timestamps();
         });
     }
@@ -27,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('enseignants');
+        Schema::dropIfExists('inscriptions');
     }
 };

@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreProfesseurRequest;
-use App\Http\Requests\UpdateProfesseurRequest;
-use App\Models\Professeur;
+use App\Http\Requests\StoreInscriptionRequest;
+use App\Http\Requests\UpdateInscriptionRequest;
+use App\Models\Inscription;
 
-class ProfesseurController extends Controller
+class InscriptionController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -27,7 +27,7 @@ class ProfesseurController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreProfesseurRequest $request)
+    public function store(StoreInscriptionRequest $request)
     {
         //
     }
@@ -35,7 +35,7 @@ class ProfesseurController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Professeur $professeur)
+    public function show(Inscription $inscription)
     {
         //
     }
@@ -43,7 +43,7 @@ class ProfesseurController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Professeur $professeur)
+    public function edit(Inscription $inscription)
     {
         //
     }
@@ -51,7 +51,7 @@ class ProfesseurController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateProfesseurRequest $request, Professeur $professeur)
+    public function update(UpdateInscriptionRequest $request, Inscription $inscription)
     {
         //
     }
@@ -59,7 +59,7 @@ class ProfesseurController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Professeur $professeur)
+    public function destroy(Inscription $inscription)
     {
         //
     }

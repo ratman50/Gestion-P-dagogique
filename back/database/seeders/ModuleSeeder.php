@@ -13,6 +13,37 @@ class ModuleSeeder extends Seeder
      */
     public function run(): void
     {
-        Module::factory(30)->create();
+        $modules=[
+            ["libelle"=>"Algo"],
+            ["libelle"=>"Analayse de données"],
+            ["libelle"=>"JavaScript"],
+            ["libelle"=>"Php"],
+            ["libelle"=>"Symfony"],
+            ["libelle"=>"Java"],
+            ["libelle"=>"Angular"],
+            ["libelle"=>"React"],
+            ["libelle"=>"Flutter"],
+            ["libelle"=>"Ionic"],
+            ["libelle"=>"Laravel"],
+            ["libelle"=>"Python"],
+            ["libelle"=>"Vue.js"],
+            ["libelle"=>"Node.js"],
+            ["libelle"=>"C"],
+            ["libelle"=>"C++"],
+            ["libelle"=>"Algo"],
+            ["libelle"=>"React Native"],
+            ["libelle"=>"Spring boot"],
+            ["libelle"=>"Micro Service"],
+            ["libelle"=>"Visual Basic"],
+            ["libelle"=>"SQL"],
+            ["libelle"=>"C#"],
+            ["libelle"=>"Assembly language"],
+            ["libelle"=>"Django"],
+            ["libelle"=>"Ruby"],
+            ["libelle"=>"JQuery"],
+            ["libelle"=>"ASP.NET"],
+
+        ];
+        Module::insert($modules);
     }
 }

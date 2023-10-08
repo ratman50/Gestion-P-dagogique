@@ -6,11 +6,14 @@ use App\Http\Requests\StoreCourseRequest;
 use App\Http\Requests\UpdateCourseRequest;
 use App\Http\Resources\CourseCollection;
 use App\Http\Resources\CourseResource;
+use App\Http\Resources\EnseignantResource;
 use App\Models\Classe;
 use App\Models\Course;
 use App\Models\Enseignant;
 use App\Models\Module;
+use App\Models\Param;
 use App\Models\Semestre;
+use App\Models\User;
 use Illuminate\Http\Client\Request;
 
 class CourseController extends Controller
@@ -22,12 +25,7 @@ class CourseController extends Controller
     {
         return response([
             "data"=>[
-                "professeur"=>Enseignant::all()->map(function($enseignant){
-                    return [
-                        "id"=>$enseignant->id,
-                        "nom"=>$enseignant->prenom.' '.$enseignant->nom
-                    ];
-                }),
+                "professeur"=>EnseignantResource::collection(User::byRole(1)->get()),
                 "module"=>Module::all(),
                 "classe"=>Classe::all(),
                 "semestre"=>Semestre::all(),
@@ -62,7 +60,17 @@ class CourseController extends Controller
     public function show( $course)
     {
         $temp=explode('=',$course);
-        return CourseResource::collection( Course::where($temp[0],$temp[1])->get());
+        if($temp[0]==="classe")
+        {
+            return 0;
+            $idParam=Param::where(["classe_id"=>$temp[0],"actif"=>1])->first("id")->id;
+            $field=["param"=>$idParam];
+            // $course
+        }
+        $field=["{$temp[0]}"=>$temp[1]];
+       
+        $course=Course::where($field)->get();
+        return CourseResource::collection($course );
     }
 
    

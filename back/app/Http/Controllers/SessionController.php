@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreSessionRequest;
 use App\Http\Requests\UpdateSessionRequest;
 use App\Models\Session;
+use Carbon\Carbon;
 
 class SessionController extends Controller
 {
@@ -27,11 +28,14 @@ class SessionController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreSessionRequest $request)
+    public function store(StoreSessionRequest $request) 
     {
-        //
+      $data = $request->validated();
+    
+      $data['date'] = Carbon::parse($data['date'])->format('Y-m-d');  
+    
+      return Session::create($data);
     }
-
     /**
      * Display the specified resource.
      */
@@ -40,13 +44,7 @@ class SessionController extends Controller
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Session $session)
-    {
-        //
-    }
+   
 
     /**
      * Update the specified resource in storage.

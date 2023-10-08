@@ -2,17 +2,16 @@
 
 namespace Database\Seeders;
 
-use App\Models\Enseignant;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class EnseignantSeeder extends Seeder
+class InscriptionSeeder extends Seeder
 {
     /**
      * Run the database seeds.
      */
     public function run(): void
     {
-        Enseignant::factory(10)->create();
+        //
     }
 }

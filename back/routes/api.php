@@ -5,6 +5,7 @@ use App\Http\Controllers\CourseController;
 use App\Http\Controllers\EnseignantController;
 use App\Http\Controllers\ModuleController;
 use App\Http\Controllers\SalleController;
+use App\Http\Controllers\SessionController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -27,6 +28,7 @@ Route::apiResources([
     "enseign"=>EnseignantController::class,
     "salle"=>SalleController::class,
     "classe"=>ClasseController::class,
-    "module"=>ModuleController::class
+    "module"=>ModuleController::class,
+    "session"=>SessionController::class
 
 ]);

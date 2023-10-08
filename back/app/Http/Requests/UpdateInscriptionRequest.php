@@ -4,14 +4,14 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreSessionRequest extends FormRequest
+class UpdateInscriptionRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
      */
     public function authorize(): bool
     {
-        return true;
+        return false;
     }
 
     /**
@@ -22,11 +22,7 @@ class StoreSessionRequest extends FormRequest
     public function rules(): array
     {
         return [
-            "course_id"=>"exists:courses,id|required",
-            "date"=>"date|required",
-            "salle_id"=>["exists:salles,id","required", new \App\Rules\SalleRule],
-            "heure_deb"=>"required|numeric|between:8,17",
-            "heure_fin"=>"required|numeric|after:heure_deb|between:8,17"
+            //
         ];
     }
 }

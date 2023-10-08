@@ -13,6 +13,16 @@ class SalleSeeder extends Seeder
      */
     public function run(): void
     {
-        Salle::factory(7)->create();
+        $salles=[
+           [ "libelle"=>"salle 1","places"=>30],
+           [ "libelle"=>"salle 2","places"=>25],
+           [ "libelle"=>"salle 3","places"=>19],
+           [ "libelle"=>"salle 4","places"=>28],
+           [ "libelle"=>"salle 5","places"=>60],
+           [ "libelle"=>"salle 6","places"=>29],
+           [ "libelle"=>"salle 7","places"=>50],
+
+        ];
+        Salle::insert($salles);
     }
 }

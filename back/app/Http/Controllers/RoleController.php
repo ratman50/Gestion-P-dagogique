@@ -2,20 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreEnseignantRequest;
-use App\Http\Requests\UpdateEnseignantRequest;
-use App\Http\Resources\EnseignantResource;
-use App\Models\Enseignant;
-use App\Models\User;
+use App\Http\Requests\StoreRoleRequest;
+use App\Http\Requests\UpdateRoleRequest;
+use App\Models\Role;
 
-class EnseignantController extends Controller
+class RoleController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        return EnseignantResource::collection(User::byRole(1)->get());
+        //
     }
 
     /**
@@ -29,7 +27,7 @@ class EnseignantController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreEnseignantRequest $request)
+    public function store(StoreRoleRequest $request)
     {
         //
     }
@@ -37,7 +35,7 @@ class EnseignantController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Enseignant $enseignant)
+    public function show(Role $role)
     {
         //
     }
@@ -45,7 +43,7 @@ class EnseignantController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Enseignant $enseignant)
+    public function edit(Role $role)
     {
         //
     }
@@ -53,7 +51,7 @@ class EnseignantController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateEnseignantRequest $request, Enseignant $enseignant)
+    public function update(UpdateRoleRequest $request, Role $role)
     {
         //
     }
@@ -61,7 +59,7 @@ class EnseignantController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Enseignant $enseignant)
+    public function destroy(Role $role)
     {
         //
     }

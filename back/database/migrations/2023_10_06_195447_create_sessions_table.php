@@ -15,11 +15,14 @@ return new class extends Migration
     {
         Schema::create('sessions', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(Course::class);
+            $table->foreignIdFor(Course::class)->constrained();
             $table->date("date");
-            $table->foreignIdFor(Salle::class);
-            $table->boolean("valider")->default("true");
-            $table->boolean("renvoyer")->default('false');
+            $table->foreignIdFor(Salle::class)->constrained();
+            $table->integer("heure_deb");
+            $table->integer("heure_fin");
+            $table->boolean("valider")->default(false);
+            $table->boolean("renvoyer")->default(false);
+            $table->unique(["course_id","date","heure_deb","heure_fin","valider","renvoyer"],"unique_line");
             $table->timestamps();
         });
     }

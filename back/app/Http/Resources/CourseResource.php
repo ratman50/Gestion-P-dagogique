@@ -16,9 +16,9 @@ class CourseResource extends JsonResource
     {
         return [
             "id"=>$this->id,
-            "annee"=>$this->annee,
-            "semestre"=>$this->semestre,
-            "classe"=>$this->classe,
+            "annee"=>$this->param->annee,
+            "semestre"=>$this->param->semestre,
+            "classe"=>$this->param->classe,
             "module"=>$this->module,
             "professeur"=>$this->professeur,
             "heure_global"=>$this->heure_global
