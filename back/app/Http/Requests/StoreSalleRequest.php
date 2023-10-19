@@ -11,7 +11,7 @@ class StoreSalleRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,8 @@ class StoreSalleRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            "libelle"=>'unique:salles,libelle',
+            "places"=>'numeric|min:10'
         ];
     }
 }

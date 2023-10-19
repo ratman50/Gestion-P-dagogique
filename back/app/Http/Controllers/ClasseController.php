@@ -5,6 +5,11 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreClasseRequest;
 use App\Http\Requests\UpdateClasseRequest;
 use App\Models\Classe;
+use App\Models\Param;
+use App\Models\User;
+use App\Models\User_module;
+use App\Traits\SessionFilterTrait;
+use Illuminate\Http\Client\Request;
 
 class ClasseController extends Controller
 {
@@ -13,8 +18,11 @@ class ClasseController extends Controller
      */
     public function index()
     {
+        $classe= Param::where("annee_scolaire_id",1)->get()->map(function($item){
+            return $item->classe;
+        });
         return response([
-            "data"=>Classe::all()
+            "data"=>   $classe,
         ]);
         //
     }
@@ -32,7 +40,10 @@ class ClasseController extends Controller
      */
     public function store(StoreClasseRequest $request)
     {
-        //
+        info("hellod");
+        return response([
+            "data"=>Classe::create($request->validated())
+        ]);
     }
 
     /**
@@ -43,12 +54,28 @@ class ClasseController extends Controller
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Classe $classe)
+    
+    public function info()
     {
-        //
+        $temp=Classe::all()->map(function($item){
+            $item["active"]=$item->param->map(function($info){
+                return $info;
+            })->count() ? true:false;
+            $item["professeur"]=$item->param->map(function($info){
+                $idModule=$info->courses->pluck("user_module");
+                $idUser= User_module::whereIn("id",$idModule)->get("user_id");
+                return User::whereIn("id",$idUser)->get();
+                
+            });
+            $item["professeur"]=$item["professeur"]->first();
+            
+                unset($item["param"]);
+            return$item;
+        });
+            //  $temp["course"]
+        return response([
+            "data"=>$temp
+        ]);
     }
 
     /**

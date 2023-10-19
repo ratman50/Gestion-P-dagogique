@@ -8,6 +8,11 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Mockery\Matcher\HasValue;
+
 class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
@@ -17,10 +22,8 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
-    protected $fillable = [
-        'name',
-        'email',
-        'password',
+    protected $guarded = [
+       
     ];
 
     /**
@@ -44,5 +47,9 @@ class User extends Authenticatable
     ];
     public function scopeByRole(Builder $query,int $role){
         return $query->where("role_id",$role);
+    }
+    public function modules():BelongsToMany{
+        return $this->belongsToMany(Module::class,"user_modules")
+        ->withPivot("id");
     }
 }

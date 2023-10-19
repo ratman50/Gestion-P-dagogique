@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class Salle extends Model
 {
     use HasFactory;
+    protected $guarded=[];
     public function sessions():HasMany{
         return $this->hasMany(Session::class);
     }

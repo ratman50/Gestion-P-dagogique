@@ -13,7 +13,7 @@ class AnneeScolaireController extends Controller
      */
     public function index()
     {
-        //
+        return response(["data"=>AnneeScolaire::all()]);
     }
 
     /**

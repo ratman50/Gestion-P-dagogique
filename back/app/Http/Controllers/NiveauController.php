@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreNiveauRequest;
 use App\Http\Requests\UpdateNiveauRequest;
+use App\Models\Module;
 use App\Models\Niveau;
 
 class NiveauController extends Controller
@@ -13,17 +14,12 @@ class NiveauController extends Controller
      */
     public function index()
     {
-        //
+        return response([
+            "data"=>Niveau::all()
+        ]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
+   
     /**
      * Store a newly created resource in storage.
      */

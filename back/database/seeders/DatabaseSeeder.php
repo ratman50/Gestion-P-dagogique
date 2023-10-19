@@ -5,6 +5,7 @@ namespace Database\Seeders;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 use App\Models\AnneeScolaire;
+use App\Models\Inscription;
 use App\Models\Niveau;
 use Illuminate\Database\Seeder;
 
@@ -32,7 +33,8 @@ class DatabaseSeeder extends Seeder
             UserSeeder::class,
             ModuleEnseignesSeesder::class,
             ParamSeeder::class,
-            CourseSeeder::class
+            CourseSeeder::class,
+            InscriptionSeeder::class
         ]);
     }
 }

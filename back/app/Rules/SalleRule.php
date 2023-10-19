@@ -39,20 +39,53 @@ class SalleRule implements ValidationRule, DataAwareRule
     public function validate(string $attribute, mixed $value, Closure $fail): void
     {
         $salle = Salle::find($value);
+        $this->data["date"] = Carbon::parse($this->data['date'])->format('Y-m-d');
         $course_id = $this->data["course_id"];
-        $classe_eff = Course::find($course_id)->param->classe;
-        $salle_disp = Salle::where("places", ">=", $classe_eff->effectif)->get()->map(function ($classe) {
-            return $classe->libelle;
-        });
-        if ($salle->places < $classe_eff->effectif)
-            $fail("la salle {$value} est trop petite pour la classe {$classe_eff->libelle}! la  {$salle_disp[0]} peut l'accueillir");
-        $date = Carbon::parse($this->data['date'])->format('Y-m-d');
-        if(Session::occuped($this->data["heure_deb"], $this->data["heure_fin"], $date))
-        $fail("la salle est déja reservée");
-        // $count=$salle->sessions()->whereDate("date",$date)->count();
-        // if($count)
-        //     $fail("La salle est déjà réservée à cette date ");
+        $selectedKey = ["heure_deb", "heure_fin", "salle_id", "date"];
+        $filteredData = array_intersect_key($this->data, array_flip($selectedKey));
+        $copyFiltered = array_intersect_key($this->data, array_flip([...$selectedKey, "course_id"]));
+        if (Session::where($copyFiltered)->exists())
+            $fail("deja enregistree");
+        $salle = Salle::find($this->data["salle_id"]);
+        $courseModele = Course::find($course_id);
+        $idCourseProgramme = Session::where($filteredData)->get(["course_id", "salle_id"]);
+        if (count($idCourseProgramme)) {
+            // dd($idCourseProgramme->pluck("course_id"));
+            if (Course::whereIn("user_module", $idCourseProgramme->pluck("course_id"))->count() <= 1)
+                $fail("deux modules différents ne peuvent pas se faire sur une meme salle à la meme heure");
+            $temp = Course::where("user_module", $courseModele->user_module)->get();
 
+            if ($temp) {
+                $course_id_planifier = Session::whereIn(
+                    "course_id",
+                    $temp->pluck("id")
+                )->get();
+                $totalEff = $course_id_planifier->reduce(function ($carry, $session) {
+                    $carry += $session->course->param->classe->effectif;
+                    return $carry;
+                }, 0);
+                $totalEff += $courseModele->param->classe->effectif;
+                $classes = $course_id_planifier->map(function ($session) {
+                    return $session->course->param->classe->libelle;
+                });
+                if ($totalEff > $salle->places) {
+                    $classes[] = $courseModele->param->classe->libelle;
+                    $acc = join(',', [...$classes]);
+                    $fail("{$salle->libelle} est trop petite pour les classes {$acc}");
+                }
+            }
+        } else {
+
+            $classe_eff = $courseModele->param->classe;
+            $salle_disp = Salle::where("places", ">=", $classe_eff->effectif)->get()->map(function ($item) {
+                return $item->libelle;
+            });
+            if ($salle->places < $classe_eff->effectif)
+                $fail("la salle {$value} est trop petite pour la classe {$classe_eff->libelle}! la  {$salle_disp[0]} peut l'accueillir");
+
+            if (Session::occuped($this->data["heure_deb"], $this->data["heure_fin"], $this->data["date"]))
+                $fail("la salle est déja reservée");
+        }
     }
     public function getData()
     {

@@ -22,10 +22,9 @@ return new class extends Migration
     {
         Schema::create('courses', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(User::class)->constrained();
-            $table->foreignIdFor(Module::class)->constrained();
             $table->integer("heure_global")->constrained();
             $table->boolean("terminer")->default(false);
+            $table->integer("heure_restant");
             $table->timestamps();
         });
     }

@@ -11,7 +11,7 @@ class StoreClasseRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,9 @@ class StoreClasseRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            "libelle"=>"required|unique:classes,libelle",
+            "filiere"=>"required",
+            "niveau_id"=>"exists:niveaux,id"
         ];
     }
 }

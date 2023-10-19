@@ -30,7 +30,6 @@ class ModuleSeeder extends Seeder
             ["libelle"=>"Node.js"],
             ["libelle"=>"C"],
             ["libelle"=>"C++"],
-            ["libelle"=>"Algo"],
             ["libelle"=>"React Native"],
             ["libelle"=>"Spring boot"],
             ["libelle"=>"Micro Service"],

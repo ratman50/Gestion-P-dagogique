@@ -11,7 +11,7 @@ class StoreNiveauRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,9 @@ class StoreNiveauRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            "libelle"=>'required|unique:niveaux,id',
+            "filiere"=>'required',
+            "niveau_id"=>'required|exists:niveaux,id'
         ];
     }
 }

@@ -1,5 +1,7 @@
 <?php
 
+use App\Models\AnneeScolaire;
+use App\Models\Classe;
 use App\Models\Param;
 use App\Models\User;
 use Illuminate\Database\Migrations\Migration;
@@ -16,8 +18,9 @@ return new class extends Migration
         Schema::create('inscriptions', function (Blueprint $table) {
             $table->id();
             $table->foreignIdFor(User::class)->constrained();
-            $table->date("date_insciption");
-            $table->foreignIdFor(Param::class)->constrained();
+            $table->date("date_inscription");
+            $table->foreignIdFor(Classe::class)->constrained();
+            $table->foreignIdFor(AnneeScolaire::class)->constrained();
             $table->timestamps();
         });
     }

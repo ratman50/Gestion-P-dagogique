@@ -16,11 +16,12 @@ class CourseSeeder extends Seeder
     {
         $prof=User::where("role_id",1)->get("id");
         $data=[
-            ["user_id"=>$prof[0]->id,"module_id"=>1,"heure_global"=>10,"param_id"=>1],
-            ["user_id"=>$prof[0]->id,"module_id"=>2,"heure_global"=>20,"param_id"=>1],
-            ["user_id"=>$prof[1]->id,"module_id"=>3,"heure_global"=>20,"param_id"=>2],
-            ["user_id"=>$prof[2]->id,"module_id"=>4,"heure_global"=>20,"param_id"=>3],
-            ["user_id"=>$prof[3]->id,"module_id"=>4,"heure_global"=>10,"param_id"=>4],
+            ["user_module"=>1,"heure_global"=>10,"param_id"=>1,"heure_restant"=>10],
+            ["user_module"=>1,"heure_global"=>10,"param_id"=>2,"heure_restant"=>10],
+            ["user_module"=>2,"heure_global"=>20,"param_id"=>1,"heure_restant"=>20],
+            ["user_module"=>3,"heure_global"=>20,"param_id"=>2,"heure_restant"=>20],
+            ["user_module"=>4,"heure_global"=>20,"param_id"=>3,"heure_restant"=>20],
+            ["user_module"=>4,"heure_global"=>10,"param_id"=>4,"heure_restant"=>10],
         ];
         Course::insert($data);
     }

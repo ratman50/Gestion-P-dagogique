@@ -5,6 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Param extends Model
 {
@@ -17,6 +19,12 @@ class Param extends Model
     } 
     public function classe():BelongsTo{
         return $this->belongsTo(Classe::class);
+    }
+    public function courses():HasMany{
+        return $this->hasMany(Course::class);
+    }
+    public function etudiants():BelongsToMany{
+        return $this->belongsToMany(User::class,"inscriptions");
     }
 
 }

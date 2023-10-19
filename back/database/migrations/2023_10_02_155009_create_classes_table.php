@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string("libelle");
             $table->string("filiere");
-            $table->integer("effectif");
+            $table->integer("effectif")->default(0);
             $table->timestamps();
         });
     }

@@ -14,7 +14,7 @@ class SalleSeeder extends Seeder
     public function run(): void
     {
         $salles=[
-           [ "libelle"=>"salle 1","places"=>30],
+           [ "libelle"=>"salle 1","places"=>60],
            [ "libelle"=>"salle 2","places"=>25],
            [ "libelle"=>"salle 3","places"=>19],
            [ "libelle"=>"salle 4","places"=>28],
